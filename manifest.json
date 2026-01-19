@@ -1,0 +1,8 @@
+{
+  "display_name": "ST AgentSkills（核心基座）",
+  "author": "st-agentskills contributors",
+  "version": "0.1.0",
+  "description": "基于文本解析（Text-Parsing Based）的高防御性基座：对外只需一个 register() 即可注册技能；基座负责注入提示词、解析调用、队列执行、错误隔离、熔断防死循环与结果回传闭环。",
+  "js": "index.js",
+  "css": "style.css"
+}

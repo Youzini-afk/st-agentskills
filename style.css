@@ -1,0 +1,255 @@
+/* st-agentskills：用于“执行中…”状态提示的最小 UI（防御性：零依赖）。 */
+
+#st-agentskills-toast-root {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.st-agentskills-btn {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 999999;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(20, 20, 20, 0.86);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.st-agentskills-btn:hover {
+  border-color: rgba(110, 220, 255, 0.35);
+}
+
+.st-agentskills-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999998;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.st-agentskills-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+  width: min(860px, calc(100vw - 28px));
+  max-height: min(82vh, 860px);
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(18, 18, 18, 0.92);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  padding: 14px;
+}
+
+.st-agentskills-modal h2 {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.st-agentskills-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.st-agentskills-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.st-agentskills-field label {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.st-agentskills-field input,
+.st-agentskills-field select,
+.st-agentskills-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 8px 10px;
+  font-size: 13px;
+  outline: none;
+}
+
+.st-agentskills-field textarea {
+  min-height: 86px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.st-agentskills-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 8px 0 12px 0;
+}
+
+.st-agentskills-actions button {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 8px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.st-agentskills-actions button:hover {
+  border-color: rgba(110, 220, 255, 0.35);
+}
+
+.st-agentskills-skilllist {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.st-agentskills-skillitem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.st-agentskills-skillmeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.st-agentskills-skillname {
+  font-weight: 700;
+}
+
+.st-agentskills-skilldesc {
+  opacity: 0.78;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+.st-agentskills-skillcontrols {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.st-agentskills-pill {
+  font-size: 11px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  opacity: 0.9;
+}
+
+.st-agentskills-pill[data-kind="enabled"] {
+  border-color: rgba(120, 255, 170, 0.25);
+}
+
+.st-agentskills-pill[data-kind="disabled"] {
+  border-color: rgba(255, 170, 120, 0.22);
+  opacity: 0.65;
+}
+
+.st-agentskills-help {
+  font-size: 12px;
+  opacity: 0.82;
+  margin: 6px 0 0 0;
+}
+
+.st-agentskills-danger {
+  color: rgba(255, 150, 150, 0.95);
+}
+
+.st-agentskills-inline {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.st-agentskills-toast {
+  pointer-events: none;
+  max-width: min(520px, calc(100vw - 32px));
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(20, 20, 20, 0.88);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  font-size: 13px;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.st-agentskills-toast[data-level="error"] {
+  border-color: rgba(255, 90, 90, 0.35);
+}
+
+.st-agentskills-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(110, 220, 255, 0.95);
+  box-shadow: 0 0 0 4px rgba(110, 220, 255, 0.12);
+  flex: 0 0 auto;
+  animation: st-agentskills-pulse 1.05s ease-in-out infinite;
+}
+
+.st-agentskills-toast[data-level="error"] .st-agentskills-dot {
+  background: rgba(255, 90, 90, 0.95);
+  box-shadow: 0 0 0 4px rgba(255, 90, 90, 0.12);
+  animation: none;
+}
+
+.st-agentskills-title {
+  font-weight: 650;
+  letter-spacing: 0.2px;
+}
+
+.st-agentskills-subtitle {
+  opacity: 0.8;
+}
+
+@keyframes st-agentskills-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+}
