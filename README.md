@@ -9,7 +9,6 @@
 - 功能总览：`docs/OVERVIEW.md`
 - 接入与开放教程：`docs/INTEGRATION_GUIDE.md`
 - 示例：世界书自动修改 + 版本回滚：`docs/EXAMPLE_WORLDBOOK_VERSIONER.md`
-- 发布到 GitHub 与安装：`docs/PUBLISH_GITHUB.md`
 
 SillyTavern 核心基座插件：提供一个“基于文本解析 (Text-Parsing Based)”的通用兼容层。
 
